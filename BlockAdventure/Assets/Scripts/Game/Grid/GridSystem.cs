@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Class này quản lý grid system, tạo table grid.
+/// </summary>
 public class GridSystem : MonoBehaviour
 {
     #region Defines
@@ -27,10 +30,14 @@ public class GridSystem : MonoBehaviour
         CreateGrid();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDisable()
     {
+        GameEvent.CheckIfShapeCanbePlaced -= CheckIfShapeCanBePlaced;
+    }
 
+    private void OnEnable()
+    {
+        GameEvent.CheckIfShapeCanbePlaced += CheckIfShapeCanBePlaced;
     }
     #endregion
 
@@ -108,6 +115,21 @@ public class GridSystem : MonoBehaviour
                 _gridSquares[_gridSquares.Count - 1].GetComponent<GridSquare>().SetImage(square_index % 2 == 0);
 
                 square_index++;
+            }
+        }
+    }
+
+
+    private void CheckIfShapeCanBePlaced()
+    {
+        foreach (var square in _gridSquares)
+        {
+            var gridSquare = square.GetComponent<GridSquare>();
+
+
+            if (gridSquare.CanUseThisSquare())
+            {
+                gridSquare.ActiveSquare();
             }
         }
     }

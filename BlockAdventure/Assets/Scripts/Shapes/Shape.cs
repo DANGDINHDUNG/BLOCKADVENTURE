@@ -1,22 +1,36 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class Shape : MonoBehaviour
+/// <summary>
+/// Quản lý từng loại Shape, hình ảnh shape, chức năng kéo thả Shape.
+/// </summary>
+public class Shape : MonoBehaviour, IPointerClickHandler, IPointerUpHandler, IBeginDragHandler, 
+    IDragHandler, IEndDragHandler, IPointerDownHandler
 {
     #region Defines
     public GameObject squareShapeImage;
+    public Vector3 shapeSelectedScale;
+    public Vector2 offset = new Vector2(0f, 700f);
 
-    //[HideInInspector]
+    [HideInInspector]
     public ShapeData currentShapeData;
 
     private List<GameObject> _currentShapes = new List<GameObject>();
+    private Vector3 _shapeStartScale;
+    private RectTransform _shapeRectTransform;
+    private bool _shapeDraggable = true;
+    private Canvas _canvas;
     #endregion
 
     #region Core MonoBehaviours
-    private void Start()
+    private void Awake()
     {
-        RequestNewShape(currentShapeData);
+        _shapeStartScale = this.GetComponent<RectTransform>().localScale;
+        _shapeRectTransform = GetComponent<RectTransform>();
+        _canvas = GetComponentInParent<Canvas>();
+        _shapeDraggable = true;
     }
     #endregion
 
@@ -26,6 +40,10 @@ public class Shape : MonoBehaviour
         CreateShape(shapeData);
     }
 
+    /// <summary>
+    /// Tạo hình ảnh shape từ dữ liệu shape.
+    /// </summary>
+    /// <param name="shapeData"></param>
     public void CreateShape(ShapeData shapeData)
     {
         currentShapeData = shapeData;
@@ -182,6 +200,44 @@ public class Shape : MonoBehaviour
             }
         }
         return number;
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        this.GetComponent<RectTransform>().localScale = shapeSelectedScale;
+    }
+
+    public void OnDrag(PointerEventData eventData)
+    {
+        _shapeRectTransform.anchorMin = new Vector2(0, 0);
+        _shapeRectTransform.anchorMax = new Vector2(0, 0);
+        _shapeRectTransform.pivot = new Vector2(0, 0);
+
+        Vector2 pos;
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(_canvas.transform as RectTransform,
+            eventData.position, Camera.main, out pos);
+        _shapeRectTransform.localPosition = pos + offset;
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        this.GetComponent<RectTransform>().localScale = shapeSelectedScale;
+        GameEvent.CheckIfShapeCanbePlaced();
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        throw new System.NotImplementedException();
     }
     #endregion
 }

@@ -1,7 +1,10 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Dữ liệu từng loại Shape.
+/// </summary>
 [CreateAssetMenu(menuName = "System/ShapeData")]
 [System.Serializable]
 public class ShapeData : ScriptableObject
