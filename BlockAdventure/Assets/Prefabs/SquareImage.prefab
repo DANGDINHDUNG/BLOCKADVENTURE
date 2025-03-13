@@ -87,6 +87,7 @@ GameObject:
   - component: {fileID: 2437962384561652595}
   - component: {fileID: 307839869679417888}
   - component: {fileID: 8440000344816694804}
+  - component: {fileID: 3164296596612682529}
   - component: {fileID: 4768720519239530746}
   - component: {fileID: 2085030591829115347}
   m_Layer: 5
@@ -144,7 +145,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 968fd11111d54dd4e8527151c5a7061f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3bd9ba18caf0a7b46a5dab8add6b62cf, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -167,6 +168,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   occupiedImage: {fileID: 8077814941707917983}
+--- !u!114 &3164296596612682529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4569349612761988840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a5907966cf04464683e66a21d1a4c46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  squareTextureData: {fileID: 11400000, guid: cccd3547eb7dc034b96acfad87af6578, type: 2}
+  updateImageOnReachedThreshold: 1
 --- !u!61 &4768720519239530746
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -196,7 +211,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

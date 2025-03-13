@@ -57,8 +57,8 @@ MonoBehaviour:
   activeImage: {fileID: 4853701615473340222}
   squareImage: {fileID: 6833455207684172884}
   squareImages:
-  - {fileID: 21300000, guid: 0b6d75c08c1ea6d43972a4f4f5569f7d, type: 3}
   - {fileID: 21300000, guid: ff1bcd33938a5b546a8098551f28a6ec, type: 3}
+  - {fileID: 21300000, guid: 0b6d75c08c1ea6d43972a4f4f5569f7d, type: 3}
 --- !u!61 &2041492713194687613
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -142,6 +142,7 @@ GameObject:
   - component: {fileID: 4226440449071256553}
   - component: {fileID: 6878139209397636202}
   - component: {fileID: 4853701615473340222}
+  - component: {fileID: 5160243408554810365}
   m_Layer: 5
   m_Name: ActiveImage
   m_TagString: Untagged
@@ -206,6 +207,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5160243408554810365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7544945212210115978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a5907966cf04464683e66a21d1a4c46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  squareTextureData: {fileID: 11400000, guid: cccd3547eb7dc034b96acfad87af6578, type: 2}
+  updateImageOnReachedThreshold: 0
 --- !u!1 &8068261078715885063
 GameObject:
   m_ObjectHideFlags: 0

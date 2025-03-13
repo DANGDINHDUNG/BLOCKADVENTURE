@@ -13,13 +13,47 @@ public class ShapeStorage : MonoBehaviour
     #endregion
 
     #region Core MonoBehaviours
-    // Start is called before the first frame update
     void Start()
     {
         foreach (var shape in shapeList)
         {
             var shapeIndex = Random.Range(0, shapeData.Count);
-            shape.CreateShape(shapeData[shapeIndex]);
+            shape.RequestNewShape(shapeData[shapeIndex]);
+        }
+    }
+
+    private void OnEnable()
+    {
+        GameEvent.RequestNewShapes += RegenerateNewShape;
+    }
+
+    private void OnDisable()
+    {
+        GameEvent.RequestNewShapes -= RegenerateNewShape;
+    }
+    #endregion
+
+    #region Methods
+    public Shape GetCurrentSelectedShape()
+    {
+        foreach (var shape in shapeList)
+        {
+            // Lấy dữ liệu của shape đang được di chuyển và chưa biến mất
+            if (shape.IsOnStartPosition() == false && shape.IsAnyOfShapeSquareActive())
+            {
+                return shape;
+            }
+        }
+        Debug.LogError("There is no shape selected");
+        return null;
+    }
+
+    public void RegenerateNewShape()
+    {
+        foreach (var shape in shapeList)
+        {
+            var shapeIndex = Random.Range(0, shapeData.Count);
+            shape.RequestNewShape(shapeData[shapeIndex]);
         }
     }
     #endregion

@@ -13,6 +13,9 @@ public class GridSquare : MonoBehaviour
     public Image activeImage;
     public Image squareImage;
     public List<Sprite> squareImages;
+
+    private Config.SquareColor currentSquareColor = Config.SquareColor.NotSet;
+        
     #endregion
 
     #region Properties
@@ -31,21 +34,51 @@ public class GridSquare : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        hoverImage.gameObject.SetActive(true);
+        if (!SquareOccupied)
+        {
+            Selected = true;
+            hoverImage.gameObject.SetActive(true);
+        }
+        else if (collision.GetComponent<ShapeSquare>() != null)
+        {
+            collision.GetComponent<ShapeSquare>().SetOccupied();
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        hoverImage.gameObject.SetActive(true);
+        Selected = true;
+
+        if (!SquareOccupied)
+        {
+            hoverImage.gameObject.SetActive(true);
+        }
+        else if (collision.GetComponent<ShapeSquare>() != null)
+        {
+            collision.GetComponent<ShapeSquare>().SetOccupied();
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        hoverImage.gameObject.SetActive(false);
+        if (!SquareOccupied)
+        {
+            Selected = false;
+            hoverImage.gameObject.SetActive(false);
+        }
+        else if (collision.GetComponent<ShapeSquare>() != null)
+        {
+            collision.GetComponent<ShapeSquare>().UnSetOccupied();
+        }
     }
     #endregion
 
     #region Methods
+    public Config.SquareColor GetCurrentColor()
+    {
+        return currentSquareColor;
+    }
+
     public void SetImage(bool setFirstImage)
     {
         squareImage.GetComponent<Image>().sprite = setFirstImage ? squareImages[0] : squareImages[1];
@@ -58,12 +91,31 @@ public class GridSquare : MonoBehaviour
         return hoverImage.gameObject.activeSelf;
     }
 
+    public void PlaceShapeOnBoard(Config.SquareColor color)
+    {
+        currentSquareColor = color;
+        ActiveSquare();
+    }
+
     public void ActiveSquare()
     {
         hoverImage.gameObject.SetActive(false);
         activeImage.gameObject.SetActive(true);
         Selected = true;
         SquareOccupied = true;
+    }
+
+    public void Deactivate()
+    {
+        currentSquareColor = Config.SquareColor.NotSet;
+        activeImage.gameObject.SetActive(false);
+    }
+
+    public void ClearOccupied()
+    {
+        currentSquareColor = Config.SquareColor.NotSet;
+        Selected = false;
+        SquareOccupied = false;
     }
     #endregion
 }
