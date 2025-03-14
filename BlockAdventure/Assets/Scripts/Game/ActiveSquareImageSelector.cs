@@ -8,11 +8,6 @@ public class ActiveSquareImageSelector : MonoBehaviour
     public SquareTextureData squareTextureData;
     public bool updateImageOnReachedThreshold = false;
 
-    private void Start()
-    {
-        UpdateSquareColorBaseOnCurrentPoints();
-    }
-
     private void OnEnable()
     {
         UpdateSquareColorBaseOnCurrentPoints();

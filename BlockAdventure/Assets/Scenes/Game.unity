@@ -3454,8 +3454,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: be99eeb978506fc4f8dc30a69d7ca0d7, type: 2}
   - {fileID: 11400000, guid: 09bc0f03db1f6f04fa8dda3f221c2e16, type: 2}
   - {fileID: 11400000, guid: 93f292c908f238245a5afdf970c1ebf4, type: 2}
-  - {fileID: 11400000, guid: c1648f525051da346906607c9e104249, type: 2}
-  - {fileID: 11400000, guid: 32373b94e4f4d0c42ab974d4d30f2d5c, type: 2}
+  - {fileID: 11400000, guid: 51353fc6038075344a8b992e90607fb1, type: 2}
+  - {fileID: 11400000, guid: 97620311a73165a499ac660305d4a9fe, type: 2}
   - {fileID: 11400000, guid: 178c30de9baa65d449c1fdb29eead2ae, type: 2}
   - {fileID: 11400000, guid: 1f9e1984acd2b3a4c824ae8dc7eb4506, type: 2}
   - {fileID: 11400000, guid: 9e7dc30b50e22a74596b3f74f594c30d, type: 2}
@@ -3469,6 +3469,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d4c1d3964e6250f4e8f67cc59587b330, type: 2}
   - {fileID: 11400000, guid: 12d5d1868e7c8f24e9e511d2b2a0b322, type: 2}
   - {fileID: 11400000, guid: 761bee071f1483340aa2704275d27685, type: 2}
+  - {fileID: 11400000, guid: 205000bbaa45dcd458dfef4102a15d8b, type: 2}
+  - {fileID: 11400000, guid: bfea1baeac0e2eb4cac06cdff6d0ada5, type: 2}
+  - {fileID: 11400000, guid: 8c485670d562415449ced5ea71bc8f80, type: 2}
+  - {fileID: 11400000, guid: 3b8113d71496f50468eab0fbde517a85, type: 2}
   shapeList:
   - {fileID: 1145641692416348567}
   - {fileID: 1325006124}
@@ -3604,6 +3608,7 @@ MonoBehaviour:
   gridSquarePrefab: {fileID: 6147984748594227164, guid: 7630774308336ad4bb9ecfdfed6097ad, type: 3}
   squareScale: 0.9
   squareTextureData: {fileID: 11400000, guid: cccd3547eb7dc034b96acfad87af6578, type: 2}
+  colorInTheGrid: 
 --- !u!114 &1620370129
 MonoBehaviour:
   m_ObjectHideFlags: 0

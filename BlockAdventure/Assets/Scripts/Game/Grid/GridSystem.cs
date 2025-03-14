@@ -21,8 +21,8 @@ public class GridSystem : MonoBehaviour
     private List<GameObject> _gridSquares = new List<GameObject>();
 
     private LineIndicator _lineIndicator;
-    private Config.SquareColor currentActiveSquareColor = Config.SquareColor.NotSet;
-    private List<Config.SquareColor> colorInTheGrid = new List<Config.SquareColor>();
+    [SerializeField] private Config.SquareColor currentActiveSquareColor = Config.SquareColor.NotSet;
+    [SerializeField] private List<Config.SquareColor> colorInTheGrid = new List<Config.SquareColor>();
     #endregion
 
     #region Core MonoBehaviours
@@ -268,6 +268,7 @@ public class GridSystem : MonoBehaviour
             if (colorInTheGridAfterLineRemove.Contains(color) == false)
             {
                 colorToPlayBonusFor = color;
+                Debug.Log(colorToPlayBonusFor);
             }
         }
 
