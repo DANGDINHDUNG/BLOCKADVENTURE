@@ -13,6 +13,8 @@ public class GameEvent : MonoBehaviour
     public static UnityAction MoveShapeToStartPosition;
 
     public static UnityAction RequestNewShapes;
+    
+    public static UnityAction CheckIfPlayerLost;
 
     public static UnityAction SetShapeInactive;
 
@@ -24,5 +26,7 @@ public class GameEvent : MonoBehaviour
 
     public static UnityAction ShowCongratulationWritings;
 
-    public static UnityAction<Config.SquareColor> ShowBonusScreen; 
+    public static UnityAction<Config.SquareColor> ShowBonusScreen;
+
+    public static UnityAction GrantAdsRewards;
 }

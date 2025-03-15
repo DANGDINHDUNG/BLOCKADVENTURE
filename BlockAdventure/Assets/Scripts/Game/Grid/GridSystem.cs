@@ -38,12 +38,14 @@ public class GridSystem : MonoBehaviour
     {
         GameEvent.CheckIfShapeCanbePlaced -= CheckIfShapeCanBePlaced;
         GameEvent.UpdateSquareColor -= OnUpdateSquareColor;
+        GameEvent.CheckIfPlayerLost -= CheckIfPlayerLost;
     }
 
     private void OnEnable()
     {
         GameEvent.CheckIfShapeCanbePlaced += CheckIfShapeCanBePlaced;
         GameEvent.UpdateSquareColor += OnUpdateSquareColor;
+        GameEvent.CheckIfPlayerLost += CheckIfPlayerLost;
     }
     #endregion
 
@@ -255,7 +257,7 @@ public class GridSystem : MonoBehaviour
         var totalScores = 10 * completedLine;
         var bonusScores = ShouldPlayColorBonusAnimation();
         GameEvent.AddScores(totalScores + bonusScores);
-        CheckIfPlayerLost();
+        GameEvent.CheckIfPlayerLost();
     }
 
     private int ShouldPlayColorBonusAnimation()
