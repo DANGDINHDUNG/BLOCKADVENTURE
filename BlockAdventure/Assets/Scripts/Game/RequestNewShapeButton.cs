@@ -52,7 +52,7 @@ public class RequestNewShapeButton : MonoBehaviour
     private void Lock()
     {
         _isLocked = true;
-        _requestNewShapeButton.gameObject.SetActive(false);
+        _requestNewShapeButton.interactable = false;
         _adsButton.gameObject.SetActive(true);
         numberText.text = _currentNumberOfRequests.ToString();
     }
@@ -60,7 +60,7 @@ public class RequestNewShapeButton : MonoBehaviour
     private void Unlock()
     {
         _isLocked = false;
-        _requestNewShapeButton.gameObject.SetActive(true);
+        _requestNewShapeButton.interactable = true;
         _adsButton.gameObject.SetActive(false);
         numberText.text = _currentNumberOfRequests.ToString();
     }

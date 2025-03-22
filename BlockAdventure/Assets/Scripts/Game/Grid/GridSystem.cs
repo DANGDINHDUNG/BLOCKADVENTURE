@@ -254,9 +254,12 @@ public class GridSystem : MonoBehaviour
             GameEvent.ShowCongratulationWritings();
         }
 
-        var totalScores = 10 * completedLine;
-        var bonusScores = ShouldPlayColorBonusAnimation();
-        GameEvent.AddScores(totalScores + bonusScores);
+        var totalDamages = 10 * completedLine;
+        var bonusDamages = ShouldPlayColorBonusAnimation();
+        //GameEvent.AddScores(totalDamages + bonusDamages);
+
+        // Tính lượng damage vào máu quái
+        GameEvent.TakeDamage(totalDamages + bonusDamages);
         GameEvent.CheckIfPlayerLost();
     }
 

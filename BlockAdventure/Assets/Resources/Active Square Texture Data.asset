@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05776b643b3dd634d8899af60e998c3d, type: 3}
   m_Name: Active Square Texture Data
   m_EditorClassIdentifier: 
-  threshHoldVal: 20
+  threshHoldVal: 550
   activeSquareData:
   - texture: {fileID: 21300000, guid: 6ef651eb261d7604eb0c54363c7b314f, type: 3}
     squareColor: 2
@@ -28,4 +28,4 @@ MonoBehaviour:
     squareColor: 8
   - texture: {fileID: 21300000, guid: 9387e27911f03d34e8bfdc5e0e2e5314, type: 3}
     squareColor: 5
-  currentColor: 2
+  currentColor: 5

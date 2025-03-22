@@ -57,7 +57,7 @@ public class Scores : MonoBehaviour
     {
         bestScore_ = BinaryDataStream.Read<BestScoreData>(bestScoreKey);
         yield return new WaitForEndOfFrame();
-        GameEvent.UpdateBestScoreBar(currentScores, bestScore_.score);
+        //GameEvent.UpdateBestScoreBar(currentScores, bestScore_.score);
     }
 
     private void AddScores(int scores)
