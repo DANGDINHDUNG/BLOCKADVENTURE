@@ -278,6 +278,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8968727035336253191, guid: 36650e20113e4024c8f67d344f3ca296, type: 3}
   m_PrefabInstance: {fileID: 8593330124948041447}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &396600758 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3167459965736773565, guid: 36650e20113e4024c8f67d344f3ca296, type: 3}
+  m_PrefabInstance: {fileID: 8593330124948041447}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9b580182e0fbd243be44ffd8e913b0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &408969618
 GameObject:
   m_ObjectHideFlags: 0
@@ -655,7 +666,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -150}
-  m_SizeDelta: {x: 600, y: 180}
+  m_SizeDelta: {x: 0, y: 180}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1102130426
 MonoBehaviour:
@@ -1268,6 +1279,18 @@ MonoBehaviour:
           m_StringArgument: OpenSettings
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 396600758}
+        m_TargetAssemblyTypeName: MenuAnimationController, Assembly-CSharp
+        m_MethodName: PlayAnimation
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: OpenSetting
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1526303726
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1362,6 +1385,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3075664915767770942, guid: bb69ccc2fca09d6488617cdc4c978fcc, type: 3}
+      propertyPath: sounds.Array.data[0].loop
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3075664915767770942, guid: bb69ccc2fca09d6488617cdc4c978fcc, type: 3}
       propertyPath: sounds.Array.data[0].volume
       value: 0.05
@@ -1755,6 +1782,18 @@ MonoBehaviour:
           m_StringArgument: CloseSettings
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 396600758}
+        m_TargetAssemblyTypeName: MenuAnimationController, Assembly-CSharp
+        m_MethodName: PlayAnimation
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: CloseSetting
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1905429285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1995,6 +2034,22 @@ PrefabInstance:
     - target: {fileID: 3248783249302705465, guid: 36650e20113e4024c8f67d344f3ca296, type: 3}
       propertyPath: m_Name
       value: Sounds
+      objectReference: {fileID: 0}
+    - target: {fileID: 3702673265990160392, guid: 36650e20113e4024c8f67d344f3ca296, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4541104232037207291, guid: 36650e20113e4024c8f67d344f3ca296, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6869083862514508126, guid: 36650e20113e4024c8f67d344f3ca296, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7789816619222829644, guid: 36650e20113e4024c8f67d344f3ca296, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8968727035336253191, guid: 36650e20113e4024c8f67d344f3ca296, type: 3}
       propertyPath: m_Pivot.x

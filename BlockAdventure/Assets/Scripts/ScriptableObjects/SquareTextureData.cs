@@ -48,7 +48,7 @@ public class SquareTextureData : ScriptableObject
             _nextColor = activeSquareData[currentColorIndex + 1].squareColor;
         }
 
-        threshHoldVal = startThreshHoldVal + current_score;
+        threshHoldVal = current_score + startThreshHoldVal;
     }
 
     public void SetStartColor()

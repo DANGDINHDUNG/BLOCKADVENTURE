@@ -6,7 +6,7 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
 {
     [SerializeField] Button _showAdButton;
     [SerializeField] string _androidAdUnitId = "Rewarded_Android";
-    [SerializeField] string _iOSAdUnitId = "Rewarded_iOS";
+    //[SerializeField] string _iOSAdUnitId = "Rewarded_iOS";
     string _adUnitId = null; // This will remain null for unsupported platforms
 
     void Awake()
@@ -26,14 +26,14 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
     public void LoadAd()
     {
         // IMPORTANT! Only load content AFTER initialization (in this example, initialization is handled in a different script).
-        Debug.Log("Loading Ad: " + _adUnitId);
+        //Debug.Log("Loading Ad: " + _adUnitId);
         Advertisement.Load(_adUnitId, this);
     }
 
     // If the ad successfully loads, add a listener to the button and enable it:
     public void OnUnityAdsAdLoaded(string adUnitId)
     {
-        Debug.Log("Ad Loaded: " + adUnitId);
+        //Debug.Log("Ad Loaded: " + adUnitId);
 
         if (adUnitId.Equals(_adUnitId))
         {
@@ -48,7 +48,7 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
     public void ShowAd()
     {
         // Disable the button:
-        Debug.Log("Showing Ad: " + _adUnitId);
+        //Debug.Log("Showing Ad: " + _adUnitId);
         _showAdButton.interactable = false;
         // Then show the ad:
         Advertisement.Show(_adUnitId, this);
@@ -59,7 +59,7 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
     {
         if (adUnitId.Equals(_adUnitId) && showCompletionState.Equals(UnityAdsShowCompletionState.COMPLETED))
         {
-            Debug.Log("Unity Ads Rewarded Ad Completed");
+            //Debug.Log("Unity Ads Rewarded Ad Completed");
             GameEvent.GrantAdsRewards();
             _showAdButton.interactable = true;
             // Grant a reward.

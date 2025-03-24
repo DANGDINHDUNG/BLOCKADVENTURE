@@ -19,7 +19,7 @@ public class SoundsButton : MonoBehaviour
         {
             _isMuted = SettingManager.settingInstance.isPlayBGM;
         }
-        UpdateSetting(soundType, _isMuted);Debug.Log("SoundType: " + soundType + " isMuted: " + _isMuted);
+        UpdateSetting(soundType, _isMuted);
     }
 
     public void PlaySound()
@@ -56,13 +56,11 @@ public class SoundsButton : MonoBehaviour
             {
                 _animator.SetTrigger("OpenBGM");
                 AudioManager.instance.Play("BGM");
-                Debug.Log("Play BGM");
             }
             else
             {
                 _animator.SetTrigger("CloseBGM");
                 AudioManager.instance.Stop("BGM");
-                Debug.Log("Stop BGM");
             }
         }
     }

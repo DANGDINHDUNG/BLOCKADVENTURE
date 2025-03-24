@@ -39,6 +39,7 @@ public class GridSystem : MonoBehaviour
         GameEvent.CheckIfShapeCanbePlaced -= CheckIfShapeCanBePlaced;
         GameEvent.UpdateSquareColor -= OnUpdateSquareColor;
         GameEvent.CheckIfPlayerLost -= CheckIfPlayerLost;
+        GameEvent.CheckIfPlayerDefeated -= CheckIfPlayerDefeated;
     }
 
     private void OnEnable()
@@ -46,6 +47,7 @@ public class GridSystem : MonoBehaviour
         GameEvent.CheckIfShapeCanbePlaced += CheckIfShapeCanBePlaced;
         GameEvent.UpdateSquareColor += OnUpdateSquareColor;
         GameEvent.CheckIfPlayerLost += CheckIfPlayerLost;
+        GameEvent.CheckIfPlayerDefeated += CheckIfPlayerDefeated;
     }
     #endregion
 
@@ -82,58 +84,7 @@ public class GridSystem : MonoBehaviour
     private void CreateGrid()
     {
         SpawnGridSquares();
-        //SetGridSquaresPosition();
     }
-
-    //private void SetGridSquaresPosition()
-    //{
-    //    // 0 1 2 3 4
-    //    // 5 6 7 8 9
-
-    //    int column_number = 0;
-    //    int row_number = 0;
-    //    Vector2 square_gap_number = new Vector2(0,0);
-    //    bool row_moved = false;
-
-    //    var square_rect = _gridSquares[0].GetComponent<RectTransform>();
-
-    //    _offset.x = square_rect.rect.width * square_rect.transform.localScale.x + squareOffset;
-    //    _offset.y = square_rect.rect.height * square_rect.transform.localScale.y + squareOffset;
-
-    //    foreach (GameObject square in _gridSquares)
-    //    {
-    //        if (column_number + 1 > columns)
-    //        {
-    //            square_gap_number.x = 0;
-    //            //Go to the next column
-    //            column_number = 0;
-    //            row_number++;
-    //            row_moved = true;
-    //        }
-
-    //        var pos_x_offset = _offset.x * column_number + (square_gap_number.x * squaresGap);
-    //        var pos_y_offset = _offset.y * row_number + (square_gap_number.y * squaresGap);
-
-    //        if (column_number > 0 && column_number %3 == 0 && row_moved == false)
-    //        {
-    //            row_moved = true;
-    //            square_gap_number.y++;
-    //            pos_y_offset += squaresGap;
-    //        }
-
-    //        if (row_number > 0 && row_number % 3 == 0)
-    //        {
-    //            square_gap_number.y++;
-    //            pos_y_offset += squaresGap;
-    //        }
-
-    //        square.GetComponent<RectTransform>().anchoredPosition = new Vector2(startPos.x + pos_x_offset, startPos.y - pos_y_offset);
-
-    //        square.GetComponent<RectTransform>().localPosition = new Vector3(startPos.x + pos_x_offset, startPos.y - pos_y_offset, 0f);
-
-    //        column_number++;
-    //    }
-    //}
 
     private void SpawnGridSquares()
     {
@@ -168,7 +119,6 @@ public class GridSystem : MonoBehaviour
             {
                 squareIndexes.Add(gridSquare.SquareIndex);
                 gridSquare.Selected = false;
-                //gridSquare.ActiveSquare();
             }
         }
 
@@ -192,9 +142,14 @@ public class GridSystem : MonoBehaviour
                 }
             }
 
+            AudioManager.instance.Play("Put_Block");
+
             if (shapeLeft == 0)
             {
                 GameEvent.RequestNewShapes();
+
+                // Khi người chơi đã đặt hết shape hiện có, sẽ tới lượt hành động của quái.
+                GameEvent.OnEnemyTurn();
             }
             else
             {
@@ -259,8 +214,9 @@ public class GridSystem : MonoBehaviour
         //GameEvent.AddScores(totalDamages + bonusDamages);
 
         // Tính lượng damage vào máu quái
-        GameEvent.TakeDamage(totalDamages + bonusDamages);
+        GameEvent.EnemyTakeDamage(totalDamages + bonusDamages);
         GameEvent.CheckIfPlayerLost();
+        CheckIfEnemyDefeated();
     }
 
     private int ShouldPlayColorBonusAnimation()
@@ -338,11 +294,31 @@ public class GridSystem : MonoBehaviour
             {
                 linesCompleted++;
             }
+
+            AudioManager.instance.Play("Break_Block");
         }
 
         return linesCompleted;
     }
 
+    // Kiểm tra nếu quái đã mất hết máu, tạo quái mới và tăng stage.
+    private void CheckIfEnemyDefeated()
+    {
+        if (BattleManager.battleInstance.enemy.currentHealthPoint <= 0)
+        {
+            BattleManager.battleInstance.RequestNewEnemy();
+            BattleManager.battleInstance.stage++;
+            BattleManager.battleInstance.SetStage();
+
+            foreach (var square in _gridSquares)
+            {
+                square.GetComponent<GridSquare>().ClearOccupied();
+                square.GetComponent<GridSquare>().Deactivate();
+            }
+        }
+    }
+
+    // Kiểm tra xem người chơi đã mất hết không gian trống để đặt shape mới.
     private void CheckIfPlayerLost()
     {
         var validShapes = 0;
@@ -359,6 +335,26 @@ public class GridSystem : MonoBehaviour
         }
 
         if (validShapes == 0)
+        {
+            //GameEvent.GameOver(false);
+            // Khi người chơi không thể đặt thêm mảnh, sẽ reset lại grid và mất một lượng lớn máu.
+            foreach (var square in _gridSquares)
+            {
+                square.GetComponent<GridSquare>().ClearOccupied();
+                square.GetComponent<GridSquare>().Deactivate();
+            }
+
+            GameEvent.PlayerTakeDamage(100);
+            GameEvent.CheckIfPlayerDefeated();
+
+            Debug.Log("Out of empty space");
+        }
+    }
+
+    // Khi người chơi mất hết máu, kết thúc game.
+    private void CheckIfPlayerDefeated()
+    {
+        if (BattleManager.battleInstance.player.currentHealthPoint <= 0)
         {
             GameEvent.GameOver(false);
         }

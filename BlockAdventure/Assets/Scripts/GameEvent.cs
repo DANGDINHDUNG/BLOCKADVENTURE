@@ -24,6 +24,8 @@ public class GameEvent : MonoBehaviour
 
     public static UnityAction<int, int> UpdateEnemyHealthBar;
 
+    public static UnityAction<int, int> UpdatePlayerHealthBar;
+
     public static UnityAction<Config.SquareColor> UpdateSquareColor;
 
     public static UnityAction ShowCongratulationWritings;
@@ -32,5 +34,11 @@ public class GameEvent : MonoBehaviour
 
     public static UnityAction GrantAdsRewards;
 
-    public static UnityAction<int> TakeDamage;
+    public static UnityAction<int> EnemyTakeDamage;
+
+    public static UnityAction<int> PlayerTakeDamage;
+
+    public static UnityAction OnEnemyTurn;
+
+    public static UnityAction CheckIfPlayerDefeated;
 }
